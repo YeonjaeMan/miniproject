@@ -1,4 +1,4 @@
-package pet_raise_project;
+package Model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,8 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class GameDAO {
-	
+public class UserDAO {
+
 	private Connection conn = null;
 	private PreparedStatement psmt = null;
 	private ResultSet rs = null;
@@ -16,7 +16,7 @@ public class GameDAO {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
-			String url = "jdbc:mysql://localhost/jdbctest";
+			String url = "jdbc:mysql://localhost/miniproject";
 			String user = "root";
 			String password = "12345";
 			
@@ -39,18 +39,18 @@ public class GameDAO {
 		}
 	}
 	
-	public int join(GameDTO dto) {
+	public int join(UserDTO dto) {
 		int row = 0;
 
 		try {
 			getConn();
 			
-			String sql = "INSERT INTO test1.userdata(user_id, user_pw) VALUES (?, ?)";
+			String sql = "INSERT INTO miniproject.player(id, pw, money) VALUES (?, ?, 0)";
 
 			psmt = conn.prepareStatement(sql);
 
-			psmt.setString(1, dto.getUserId());
-			psmt.setString(2, dto.getUserPw());
+			psmt.setString(1, dto.getId());
+			psmt.setString(2, dto.getPw());
 
 			row = psmt.executeUpdate();
 
@@ -63,13 +63,13 @@ public class GameDAO {
 		return row;
 	}
 	
-	public GameDTO login(String id, String pw) {
-		GameDTO dto = null;
+	public UserDTO login(String id, String pw) {
+		UserDTO dto = null;
 
 		try {
 			getConn();
 			
-			String sql = "SELECT * FROM test1.userdata WHERE user_id = ? AND user_pw = ?";
+			String sql = "SELECT * FROM miniproject.player WHERE id = ? AND pw = ?";
 
 			psmt = conn.prepareStatement(sql);
 
@@ -79,7 +79,7 @@ public class GameDAO {
 			rs = psmt.executeQuery();
 
 			if (rs.next() == true) {
-				dto = new GameDTO(id, pw, rs.getString("pet_name"));
+				dto = new UserDTO(id, pw, rs.getInt("money"));
 			}
 
 		} catch (Exception e) {
@@ -91,5 +91,6 @@ public class GameDAO {
 		return dto;
 
 	}
+	
 	
 }
