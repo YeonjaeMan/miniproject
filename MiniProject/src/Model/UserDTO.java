@@ -11,6 +11,12 @@ public class UserDTO {
 		this.pw = pw;
 		this.money = money;
 	}
+	
+	public UserDTO(String id, String pw) {
+		super();
+		this.id = id;
+		this.pw = pw;
+	}
 
 	public String getId() {
 		return id;

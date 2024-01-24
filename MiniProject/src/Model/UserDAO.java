@@ -15,20 +15,20 @@ public class UserDAO {
 	private void getConn() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			
+
 			String url = "jdbc:mysql://localhost/miniproject";
 			String user = "root";
 			String password = "12345";
-			
+
 			conn = DriverManager.getConnection(url, user, password);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void getClose() {
 		try {
-			if(rs != null)
+			if (rs != null)
 				rs.close();
 			if (psmt != null)
 				psmt.close();
@@ -38,14 +38,14 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public int join(UserDTO dto) {
 		int row = 0;
 
 		try {
 			getConn();
-			
-			String sql = "INSERT INTO miniproject.player(id, pw, money) VALUES (?, ?, 0)";
+
+			String sql = "INSERT INTO miniproject.player(id, pw) VALUES (?, ?)";
 
 			psmt = conn.prepareStatement(sql);
 
@@ -62,13 +62,13 @@ public class UserDAO {
 
 		return row;
 	}
-	
+
 	public UserDTO login(String id, String pw) {
 		UserDTO dto = null;
 
 		try {
 			getConn();
-			
+
 			String sql = "SELECT * FROM miniproject.player WHERE id = ? AND pw = ?";
 
 			psmt = conn.prepareStatement(sql);
@@ -91,6 +91,59 @@ public class UserDAO {
 		return dto;
 
 	}
-	
-	
+
+	public int decideType(String p_name, String spec, String id) {
+
+		int row = 0;
+
+		try {
+			getConn();
+
+			String sql = "INSERT INTO miniproject.pet(p_name, spec, id)" + "VALUES (?, ?, ?)";
+
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setString(1, p_name);
+			psmt.setString(2, spec);
+			psmt.setString(3, id);
+
+			row = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}
+
+		return row;
+	}
+
+	public PetDTO getPetInfo(String id) {
+
+		PetDTO petDto = null;
+
+		try {
+			getConn();
+
+			String sql = "select * from player inner join pet on player.id = pet.id where player.id = ?";
+
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setString(1, id);
+
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				petDto = new PetDTO(rs.getString("p_name"), rs.getString("spec"), rs.getInt("hp"),
+						rs.getInt("fullness"), rs.getInt("love"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}
+
+		return petDto;
+	}
 }
