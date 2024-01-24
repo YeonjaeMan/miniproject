@@ -7,13 +7,20 @@ public class PetDTO {
 	private int hp; // 펫 체력
 	private int fullness; // 펫 포만감
 	private int love; // 펫 애정도
+	private int money;
+	private boolean supply1;
+	private boolean supply2;
 	
-	public PetDTO(String name, String spec, int hp, int fullness, int love) {
+	public PetDTO(String name, String spec, int hp, int fullness, int love, int money, boolean supply1,
+			boolean supply2) {
 		this.name = name;
 		this.spec = spec;
 		this.hp = hp;
 		this.fullness = fullness;
 		this.love = love;
+		this.money = money;
+		this.supply1 = supply1;
+		this.supply2 = supply2;
 	}
 
 	public String getName() {
@@ -55,7 +62,31 @@ public class PetDTO {
 	public void setLove(int love) {
 		this.love = love;
 	}
-	
+
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
+	public boolean isSupply1() {
+		return supply1;
+	}
+
+	public void setSupply1(boolean supply1) {
+		this.supply1 = supply1;
+	}
+
+	public boolean isSupply2() {
+		return supply2;
+	}
+
+	public void setSupply2(boolean supply2) {
+		this.supply2 = supply2;
+	}
+
 	
 	
 }

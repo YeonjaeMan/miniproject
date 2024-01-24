@@ -25,7 +25,7 @@ public class GameMain {
 				String pw = sc.next();
 
 				UserDAO userDao = new UserDAO();
-				UserDTO userDto = new UserDTO(id, pw, 0);
+				UserDTO userDto = new UserDTO(id, pw);
 				int row = userDao.join(userDto);
 
 				if (row > 0) {
@@ -81,42 +81,35 @@ public class GameMain {
 					}
 
 					if (petDto != null) {
+						String name = petDto.getName();
+						String spec = petDto.getSpec();
+						int hp = petDto.getHp();
+						int fullness = petDto.getFullness();
+						int love = petDto.getLove();
+						int money = petDto.getMoney();
+						boolean supply1 = petDto.isSupply1();
+						boolean supply2 = petDto.isSupply2();
+
 						while (true) {
-							String name = petDto.getName();
-							int hp = petDto.getHp();
-							int fullness = petDto.getFullness();
-							int love = petDto.getLove();
-							int money = userDto.getMoney();
-							String spec = petDto.getSpec();
 
 							System.out.println("[1]상태보기 [2]소지품확인 [3]알바하기 [4]병원가기 [5]놀아주기 [6]잠재우기 [7]게임메뉴로 돌아가기");
 							int choice = sc.nextInt();
 
 							if (choice == 1) {
-								if (hp > 0) {
-									System.out.println("=========" + name + "의 상태=========");
-									System.out.println("1. 체력 : " + hp);
-									System.out.println("2. 포만감 : " + fullness);
-									System.out.println("3. 애정 : " + love);
-									System.out.println();
-								} else {
-									System.out.println("hp가 0입니다.");
-									System.out.println("탈락");
-									break;
-								}
+
+								System.out.println("=========" + name + "의 상태=========");
+								System.out.println("1. 체력 : " + hp);
+								System.out.println("2. 포만감 : " + fullness);
+								System.out.println("3. 애정 : " + love);
+								System.out.println();
 
 							} else if (choice == 2) {
 								System.out.println("========= 소지품 ==========");
 								System.out.println("돈 :" + money + "원");
 								System.out.println();
 
-								if (hp == 0) {
-									System.out.println("hp가 0입니다.");
-									System.out.println("탈락");
-									break;
-								}
-
 							} else if (choice == 3) {
+
 								System.out.println("========= 아르바이트 =========");
 								System.out.println(name + "아 조금만 기다려...");
 
@@ -127,15 +120,9 @@ public class GameMain {
 									e.printStackTrace();
 								}
 
-								userDto.setMoney(money + 6000);
+								money = money + 6000;
 								System.out.println("6000원을 획득하였습니다.");
 								System.out.println();
-
-								if (hp == 0) {
-									System.out.println("hp가 0입니다.");
-									System.out.println("탈락");
-									break;
-								}
 
 							} else if (choice == 4) {
 								System.out.println("오늘도 우리 귀여운" + name + "무슨일로 병원에 왔는가");
@@ -144,7 +131,7 @@ public class GameMain {
 									System.out.print("[1]간식 [2]사료 [3]진료 [4]장난감 [5]애견용품 [6]나가기");
 									int hosChoice = sc.nextInt();
 
-									if (choice == 1) {
+									if (hosChoice == 1) {
 										money -= -0;// 여기 0에는 감소되는 금액 작성
 										System.out.println();
 										System.out.println("<우리" + name + "왕자가 간식을 선택하였구나>");
@@ -152,7 +139,7 @@ public class GameMain {
 										fullness += 10;
 										love += 10;
 										printInfo(name, hp, fullness, love, money);
-									} else if (choice == 2) {
+									} else if (hosChoice == 2) {
 										money -= -0;
 										System.out.println();
 										System.out.println("이보게 주인 양반" + name + "왕자 밥좀 팍팍먹이게");
@@ -160,7 +147,7 @@ public class GameMain {
 										fullness += 15;
 										love += 5;
 										printInfo(name, hp, fullness, love, money);
-									} else if (choice == 3) {
+									} else if (hosChoice == 3) {
 										money -= -0;
 										System.out.println();
 										System.out.println(name + "의 건강검진을 시작합니다.");
@@ -168,7 +155,7 @@ public class GameMain {
 										fullness -= 20;
 										love -= 30;
 										printInfo(name, hp, fullness, love, money);
-									} else if (choice == 4) {
+									} else if (hosChoice == 4) {
 										money -= -0;
 										System.out.println();
 										System.out.println("껄껄 돈많은 양반이구만" + name + "재미있게 가지고 놀아라");
@@ -176,18 +163,18 @@ public class GameMain {
 										fullness -= 15;
 										love += 15;
 										printInfo(name, hp, fullness, love, money);
-									} else if (choice == 5) {
+									} else if (hosChoice == 5) {
 										if (spec.equals("강아지")) {
 											while (true) {
 												System.out.println("[1] 옷사기 [2] 목줄사기 [3]삑삑이 [4]나가기");
-												choice = sc.nextInt();
-												if (choice == 1) {
+												int hosDogChoice = sc.nextInt();
+												if (hosDogChoice == 1) {
 													money -= -0;
 													System.out.println();
 													System.out.println("오늘은 이옷이 좋겠군 우리" + name + "왕자 오늘도 예쁘구나");
 													love += 5;
 													printInfo(name, hp, fullness, love, money);
-												} else if (choice == 2) {
+												} else if (hosDogChoice == 2) {
 													boolean lead = true;
 													money -= -0;
 													System.out.println();
@@ -196,7 +183,7 @@ public class GameMain {
 													fullness -= 0;
 													love -= 0;
 													printInfo(name, hp, fullness, love, money);
-												} else if (choice == 3) {
+												} else if (hosDogChoice == 3) {
 													boolean catwheel = true;
 													money -= -0;
 													System.out.println();
@@ -205,7 +192,7 @@ public class GameMain {
 													fullness -= 0;
 													love -= 0;
 													printInfo(name, hp, fullness, love, money);
-												} else if (choice == 4) {
+												} else if (hosDogChoice == 4) {
 													break;
 												}
 											}
@@ -213,14 +200,14 @@ public class GameMain {
 										if (spec.equals("고양이")) {
 											while (true) {
 												System.out.println("[1] 옷사기 [2] 켓휠 [3]레이저 [4]나가기");
-												choice = sc.nextInt();
-												if (choice == 1) {
+												int hosCatChoice = sc.nextInt();
+												if (hosCatChoice == 1) {
 													money -= -0;
 													System.out.println();
 													System.out.println("오늘은 이옷이 좋겠군 우리" + name + "왕자 오늘도 예쁘구나");
 													love += 5;
 													printInfo(name, hp, fullness, love, money);
-												} else if (choice == 2) {
+												} else if (hosCatChoice == 2) {
 													boolean lead = true;
 													money -= -0;
 													System.out.println();
@@ -229,7 +216,7 @@ public class GameMain {
 													fullness -= 10;
 													love += 5;
 													printInfo(name, hp, fullness, love, money);
-												} else if (choice == 3) {
+												} else if (hosCatChoice == 3) {
 													boolean catwheel = true;
 													money -= -0;
 													System.out.println();
@@ -238,34 +225,105 @@ public class GameMain {
 													fullness -= 0;
 													love -= 0;
 													printInfo(name, hp, fullness, love, money);
-												} else if (choice == 4) {
+												} else if (hosCatChoice == 4) {
 													break;
 												}
 											}
 										}
-									} else if (choice == 6) {
+									} else if (hosChoice == 6) {
 										break;
 									} else {
 										System.out.println("고객님 무슨말을 하시는지 모르겠습니다.");
 									}
 								}
 
+							} else if (choice == 5) {
+								System.out.println(name + "(이)랑 놀아주기!!");
+								if (spec.equals("강아지")) {
+									System.out.println("[1]산책 [2]터그놀이");
+									int dog_choice = sc.nextInt();
+									boolean lead = true;
+									boolean dogToy = true;
+
+									if (dog_choice == 1) {
+										if (lead == true) {
+											System.out.println(name + "이와 함께 산책을 나섭니다.");
+											// 딜레이 2초 넣기
+											love += 15;
+											fullness -= 15;
+											hp -= 5;
+											System.out.println("애정도가 15 올라갔습니다.");
+										} else {
+											System.out.println("목줄이 없어 산책을 할 수 없습니다ㅠㅠ");
+										}
+									} else if (dog_choice == 2) {
+										if (dogToy == true) {
+											System.out.println("삑삑이 인형으로 터그놀이를 해줍니다.");
+											love += 10;
+											fullness -= 10;
+											hp -= 5;
+											System.out.println("애정도가 10 올라갔습니다.");
+										} else {
+											System.out.println("터그놀이를 해줍니다.");
+											love += 5;
+											fullness -= 10;
+											hp -= 5;
+											System.out.println("애정도가 5 올라갔습니다.");
+										}
+									}
+								} else if (spec.equals("고양이")) {
+
+									System.out.println("[1]캣휠 [2]사냥놀이");
+									int catChoice = sc.nextInt();
+									boolean catWheel = true;
+									boolean catToy = true;
+									if (catChoice == 1) {
+										if (catWheel == true) {
+											System.out.println(name + "(이)가 캣휠을 타고있습니다.");
+											// 딜레이 2초 넣기
+											love += 15;
+											fullness -= 15;
+											hp -= 5;
+											System.out.println("애정도가 15 올라갔습니다.");
+										} else {
+											System.out.println("캣휠이 없어서 캣휠을 태울 수 없습니다ㅠㅠ");
+										}
+									} else if (catChoice == 2) {
+										if (catToy == true) {
+											System.out.println("레이저로 사냥놀이를 해줍니다.");
+											love += 10;
+											fullness -= 10;
+											hp -= 5;
+											System.out.println("애정도가 10 올라갔습니다.");
+										} else {
+											System.out.println("사냥놀이 해줍니다.");
+											love += 5;
+											fullness -= 10;
+											hp -= 5;
+											System.out.println("애정도가 5 올라갔습니다.");
+										}
+
+									}
+
+								}
+
 							} else if (choice == 6) {
 								System.out.println(name + "(을)를 재웁니다.");
 
-								int row = petDao.sleep(petDto);
+								hp += 5;
+								fullness -= 5;
+
+								PetDTO lastPetDto = new PetDTO(name, spec, hp, fullness, love, money, supplies);
+
+								int row = petDao.sleep(lastPetDto);
 
 								if (row > 0) {
 									System.out.println("펫의 hp 5, fullness 5 올랐습니다.");
+									System.out.println("펫 정보를 저장합니다.");
 								} else {
 									System.out.println("오류");
 								}
 
-								if (hp == 0) {
-									System.out.println("hp가 0입니다.");
-									System.out.println("탈락");
-									break;
-								}
 							} else if (choice == 7) {
 								System.out.println("메인화면으로 돌아갑니다.");
 								break;
@@ -289,7 +347,7 @@ public class GameMain {
 		}
 
 	}
-	
+
 	public static void printInfo(String name, int hp, int fullness, int love, int money) {
 		try {
 			Thread.sleep(1000);
@@ -297,8 +355,7 @@ public class GameMain {
 			e.printStackTrace();
 		}
 		System.out.println();
-		System.out.println("현재 " + name + "의 체력 :" + hp + "\t" + "포만감 :" + fullness
-				+ "\t" + "애정 :" + love);
+		System.out.println("현재 " + name + "의 체력 :" + hp + "\t" + "포만감 :" + fullness + "\t" + "애정 :" + love);
 		System.out.println("님의 잔액은" + money + "입니다.");
 	}
 

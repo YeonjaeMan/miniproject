@@ -42,20 +42,20 @@ public class PetDAO {
 	public int sleep(PetDTO petDto) {
 	      int row = 0;
 	      
-	      petDto.setHp(petDto.getHp() + 5);
-	      petDto.setFullness(petDto.getFullness() - 5);
-	      
 	      try {
 	         getConn();
 	         
-	         String sql = "update miniproject.pet set Hp = ?, Fullness = ?, Love = ? where p_name = ?";
+	         String sql = "update miniproject.pet set Hp = ?, Fullness = ?, Love = ?, money = ?, supply_st = ?, supply_rd = ? where p_name = ?";
 
 	         psmt = conn.prepareStatement(sql);
 
 	         psmt.setInt(1, petDto.getHp());
 	         psmt.setInt(2, petDto.getFullness());
 	         psmt.setInt(3, petDto.getLove());
-	         psmt.setString(4, petDto.getName());
+	         psmt.setInt(4,  petDto.getMoney());
+	         psmt.setBoolean(5, petDto.isSupply1());
+	         psmt.setBoolean(6, petDto.isSupply2());
+	         psmt.setString(7, petDto.getName());
 
 	         row = psmt.executeUpdate();
 

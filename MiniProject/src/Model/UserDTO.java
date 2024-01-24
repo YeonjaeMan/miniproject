@@ -4,16 +4,8 @@ public class UserDTO {
 
 	private String id;
 	private String pw;
-	private int money;
-	
-	public UserDTO(String id, String pw, int money) {
-		this.id = id;
-		this.pw = pw;
-		this.money = money;
-	}
 	
 	public UserDTO(String id, String pw) {
-		super();
 		this.id = id;
 		this.pw = pw;
 	}
@@ -34,14 +26,4 @@ public class UserDTO {
 		this.pw = pw;
 	}
 
-	public int getMoney() {
-		return money;
-	}
-
-	public void setMoney(int money) {
-		this.money = money;
-	}
-	
-	
-	
 }
