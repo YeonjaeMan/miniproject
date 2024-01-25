@@ -17,9 +17,9 @@ public class UserDAO {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			String url = "jdbc:mysql://localhost/miniproject";
-			String user = "root";
-			String password = "12345";
+			String url = "jdbc:mysql://project-db-campus.smhrd.com:3307/cgi_23K_BIG23_p1_2";
+			String user = "cgi_23K_BIG23_p1_2";
+			String password = "smhrd2";
 
 			conn = DriverManager.getConnection(url, user, password);
 		} catch (Exception e) {
@@ -46,7 +46,7 @@ public class UserDAO {
 		try {
 			getConn();
 
-			String sql = "INSERT INTO miniproject.player(id, pw) VALUES (?, ?)";
+			String sql = "INSERT INTO cgi_23K_BIG23_p1_2.player(id, pw) VALUES (?, ?)";
 
 			psmt = conn.prepareStatement(sql);
 
@@ -70,7 +70,7 @@ public class UserDAO {
 		try {
 			getConn();
 
-			String sql = "SELECT * FROM miniproject.player WHERE id = ? AND pw = ?";
+			String sql = "SELECT * FROM cgi_23K_BIG23_p1_2.player WHERE id = ? AND pw = ?";
 
 			psmt = conn.prepareStatement(sql);
 
@@ -100,7 +100,7 @@ public class UserDAO {
 		try {
 			getConn();
 
-			String sql = "INSERT INTO miniproject.pet(p_name, spec, id)" + "VALUES (?, ?, ?)";
+			String sql = "INSERT INTO cgi_23K_BIG23_p1_2.pet(p_name, spec, id)" + "VALUES (?, ?, ?)";
 
 			psmt = conn.prepareStatement(sql);
 

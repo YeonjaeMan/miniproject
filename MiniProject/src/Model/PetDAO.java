@@ -16,9 +16,9 @@ public class PetDAO {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			String url = "jdbc:mysql://localhost/miniproject";
-			String user = "root";
-			String password = "12345";
+			String url = "jdbc:mysql://project-db-campus.smhrd.com:3307/cgi_23K_BIG23_p1_2";
+			String user = "cgi_23K_BIG23_p1_2";
+			String password = "smhrd2";
 
 			conn = DriverManager.getConnection(url, user, password);
 		} catch (Exception e) {
@@ -45,7 +45,7 @@ public class PetDAO {
 	      try {
 	         getConn();
 	         
-	         String sql = "update miniproject.pet set Hp = ?, Fullness = ?, Love = ?, money = ?, snack = ?, feed = ?, supply_st = ?, supply_rd = ? where p_name = ?";
+	         String sql = "update cgi_23K_BIG23_p1_2.pet set Hp = ?, Fullness = ?, Love = ?, money = ?, snack = ?, feed = ?, supply_st = ?, supply_rd = ? where p_name = ?";
 
 	         psmt = conn.prepareStatement(sql);
 
