@@ -14,9 +14,10 @@ public class GameMain {
 		Scanner sc = new Scanner(System.in);
 
 		while (true) {
-			System.out.println("[1]회원가입 [2]로그인 [3]게임종료");
-			int input = sc.nextInt();
 			ConsoleClear();
+			System.out.println("========== 메인 메뉴 ==========");
+			System.out.println("[0]게임종료 [1]회원가입 [2]로그인");
+			int input = sc.nextInt();
 
 			if (input == 1) { // 회원가입
 				ConsoleClear();
@@ -99,25 +100,32 @@ public class GameMain {
 						while ((hp > 0 && fullness > 0 && love > 0)
 								&& (hp < 60 || fullness < 60 || love < 60 || (hp + fullness + love) / 3 < 70)) {
 
-							System.out.println("[0]로그인 이동 [1]상태보기 [2]소지품확인 [3]알바하기(돈+6000) [4]병원가기 [5]놀아주기 [6]잠재우기(저장)");
+							System.out.println("[0]로그인 이동 [1]상태보기 [2]가방확인 [3]알바하기(돈+6000) [4]병원가기 [5]놀아주기 [6]잠재우기(저장)");
 							int choice = sc.nextInt();
 
 							if (choice == 1) {
-								System.out.println("==========" + name + "의 상태 ==========");
-								System.out.println("체력 : " + hp);
+								ConsoleClear();
+								System.out.println("========== " + name + "의 상태 ==========");
+								System.out.println("건강 : " + hp);
 								System.out.println("포만감 : " + fullness);
 								System.out.println("애정 : " + love);
 								System.out.println();
 
 							} else if (choice == 2) {
-								System.out.println("========== 소지품 ==========");
-								System.out.println("돈 :" + money + "원");
-								System.out.println();
+								ConsoleClear();
+								System.out.println("========== 가방 ==========");
+								System.out.println("돈 : " + money + "원");
+								System.out.println("간식");
+								System.out.println("사료");
+								if(supply1 == true) {
+									if(spec.equals(sc))
+									System.out.println("");
+								}
 
 							} else if (choice == 3) {
-
+								ConsoleClear();
 								System.out.println("========== 아르바이트 ==========");
-								System.out.println(name + "아 조금만 기다려...");
+								System.out.println(name + " 조금만 기다려...");
 
 								try {
 									// 2000 밀리초(2초) 동안 일시 중지
@@ -131,6 +139,7 @@ public class GameMain {
 								System.out.println();
 
 							} else if (choice == 4) {
+								ConsoleClear();
 								System.out.println("========== 병원 입장 ==========");
 
 								while ((hp > 0 && fullness > 0 && love > 0)
@@ -140,68 +149,70 @@ public class GameMain {
 									int hosChoice = sc.nextInt();
 
 									if (hosChoice == 1) {
-										money -= 3000;// 여기 0에는 감소되는 금액 작성
-										System.out.println();
+										ConsoleClear();
 										System.out.println("========== 간식주기 ==========");
+										money -= 3000;// 여기 0에는 감소되는 금액 작성
 										hp -= 5;
 										fullness += 10;
 										love += 10;
 										printInfo(name, hp, fullness, love, money);
 									} else if (hosChoice == 2) {
-										money -= 4000;
-										System.out.println();
+										ConsoleClear();
 										System.out.println("========== 사료주기 ==========");
+										money -= 4000;
 										hp += 5;
 										fullness += 15;
 										love += 5;
 										printInfo(name, hp, fullness, love, money);
 									} else if (hosChoice == 3) {
-										money -= 3000;
-										System.out.println();
+										ConsoleClear();
 										System.out.println("========== 진료받기 ==========");
+										money -= 3000;
 										hp += 20;
 										fullness -= 20;
 										love -= 30;
 										printInfo(name, hp, fullness, love, money);
 									} else if (hosChoice == 4) {
-										money -= 2500;
-										System.out.println();
+										ConsoleClear();
 										System.out.println("========== 장난감주기 ==========");
+										money -= 2500;
 										hp -= 5;
 										fullness -= 15;
 										love += 15;
 										printInfo(name, hp, fullness, love, money);
 									} else if (hosChoice == 5) {
+										ConsoleClear();
 										if (spec.equals("강아지")) {
 											while ((hp > 0 && fullness > 0 && love > 0) && (hp < 60 || fullness < 60
 													|| love < 60 || (hp + fullness + love) / 3 < 70)) {
 												System.out.println("[0]나가기 [1]옷사기(애정+5) [2]목줄사기(애정+5) [3]삑삑이(애정+5)");
 												int hosDogChoice = sc.nextInt();
 												if (hosDogChoice == 1) {
-													money -= 1000;
-													System.out.println();
+													ConsoleClear();
 													System.out.println("옷을 획득합니다.");
+													money -= 1000;
 													love += 5;
 													printInfo(name, hp, fullness, love, money);
 												} else if (hosDogChoice == 2) {
-													boolean lead = true;
-													money -= 1500;
-													System.out.println();
+													ConsoleClear();
+													supply1 = true;
 													System.out.println("목줄을 획득합니다.");
+													money -= 1500;
 													hp -= 5;
 													fullness -= 10;
 													love += 5;
 													printInfo(name, hp, fullness, love, money);
 												} else if (hosDogChoice == 3) {
+													ConsoleClear();
 													boolean catwheel = true;
-													money -= 1500;
-													System.out.println();
 													System.out.println("삑삑이을 획득합니다.");
+													money -= 1500;
 													hp -= 5;
 													fullness -= 10;
 													love += 5;
 													printInfo(name, hp, fullness, love, money);
 												} else if (hosDogChoice == 0) {
+													ConsoleClear();
 													break;
 												}
 											}
@@ -212,35 +223,37 @@ public class GameMain {
 												System.out.println("[0]나가기 [1]옷사기(애정+5) [2]캣휠(애정+5) [3]레이저(애정+5)");
 												int hosCatChoice = sc.nextInt();
 												if (hosCatChoice == 1) {
-													money -= 1000;
-													System.out.println();
+													ConsoleClear();
 													System.out.println("옷을 획득합니다.");
+													money -= 1000;
 													love += 5;
 													printInfo(name, hp, fullness, love, money);
 												} else if (hosCatChoice == 2) {
+													ConsoleClear();
+													System.out.println("켓휠을 획득합니다.");
 													boolean lead = true;
 													money -= 1500;
-													System.out.println();
-													System.out.println("켓휠을 획득합니다.");
 													hp -= 5;
 													fullness -= 10;
 													love += 5;
 													printInfo(name, hp, fullness, love, money);
 												} else if (hosCatChoice == 3) {
+													ConsoleClear();
+													System.out.println("레이저을 획득합니다.");
 													boolean catwheel = true;
 													money -= 1500;
-													System.out.println();
-													System.out.println("레이저을 획득합니다.");
 													hp -= 0;
 													fullness -= 0;
 													love -= 0;
 													printInfo(name, hp, fullness, love, money);
 												} else if (hosCatChoice == 4) {
+													ConsoleClear();
 													break;
 												}
 											}
 										}
 									} else if (hosChoice == 0) {
+										ConsoleClear();
 										break;
 									} else {
 										System.out.println("번호를 다시 입력해주세요.");
@@ -248,6 +261,7 @@ public class GameMain {
 								}
 
 							} else if (choice == 5) {
+								ConsoleClear();
 								System.out.println("========== 놀아주기 ==========");
 								while ((hp > 0 && fullness > 0 && love > 0)
 										&& (hp < 60 || fullness < 60 || love < 60 || (hp + fullness + love) / 3 < 70)) {
@@ -258,6 +272,7 @@ public class GameMain {
 										boolean dogToy = true;
 
 										if (playDogChoice == 1) {
+											ConsoleClear();
 											System.out.println("========== 산책하기 ==========");
 											if (lead == true) {
 												// 딜레이 2초 넣기
@@ -268,6 +283,7 @@ public class GameMain {
 												System.out.println("목줄이 없어 산책을 할 수 없습니다ㅠㅠ");
 											}
 										} else if (playDogChoice == 2) {
+											ConsoleClear();
 											System.out.println("========== 터그놀이 ==========");
 											if (dogToy == true) {
 												love += 10;
@@ -279,6 +295,7 @@ public class GameMain {
 												hp -= 5;
 											}
 										} else if(playDogChoice == 0) {
+											ConsoleClear();
 											System.out.println("이전으로 돌아갑니다.");
 											break;
 										}
@@ -290,6 +307,7 @@ public class GameMain {
 										boolean catWheel = true;
 										boolean catToy = true;
 										if (playCatChoice == 1) {
+											ConsoleClear();
 											System.out.println("========== 캣휠 ==========");
 											if (catWheel == true) {
 												// 딜레이 2초 넣기
@@ -297,15 +315,18 @@ public class GameMain {
 												fullness -= 15;
 												hp -= 5;
 											} else {
+												ConsoleClear();
 												System.out.println("캣휠이 없어서 캣휠을 태울 수 없습니다ㅠㅠ");
 											}
 										} else if (playCatChoice == 2) {
+											ConsoleClear();
 											System.out.println("========== 사냥놀이 ==========");
 											if (catToy == true) {
 												love += 10;
 												fullness -= 10;
 												hp -= 5;
 											} else {
+												ConsoleClear();
 												System.out.println("사냥놀이 해줍니다.");
 												love += 5;
 												fullness -= 10;
@@ -313,6 +334,7 @@ public class GameMain {
 											}
 
 										} else if(playCatChoice == 0) {
+											ConsoleClear();
 											System.out.println("이전으로 돌아갑니다.");
 											break;
 										}
@@ -322,6 +344,7 @@ public class GameMain {
 								}
 
 							} else if (choice == 6) {
+								ConsoleClear();
 								System.out.println("========== 잠재우기 ==========");
 
 								hp += 5;
@@ -347,13 +370,16 @@ public class GameMain {
 						}
 
 						if (hp <= 0 || fullness <= 0 || love <= 0) {
+							ConsoleClear();
 							System.out.println("게임 실패 훗 가소롭군 넘모 못하네");
 							// 게임 오버 시 해당 id의 동물 정보를 'delete'하기
 						} else {
 							if (spec.equals("강아지")) {
+								ConsoleClear();
 								System.out.println("훌륭한 강아지로 자랐습니다");
 								// 훌륭한 강아지 정보 데이터 베이스에 'update'하기
 							} else {
+								ConsoleClear();
 								System.out.println("훌륭한 고양이로 자랐습니다.");
 								// 훌륭한 고양이 정보 데이터 베이스에 'update'하기
 							}
@@ -362,13 +388,16 @@ public class GameMain {
 					}
 
 				} else {
+					ConsoleClear();
 					System.out.println("로그인에 실패했습니다.");
 					System.out.println("아이디와 비밀번호를 확인해주세요.");
 				}
 			} else if (input == 0) { // 게임종료
+				ConsoleClear();
 				System.out.println("게임을 종료합니다.");
 				break;
 			} else {
+				ConsoleClear();
 				System.out.println("다시 입력해주세요.");
 			}
 		}
