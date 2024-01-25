@@ -17,10 +17,12 @@ public class GameMain {
 		Scanner sc = new Scanner(System.in);
 
 		MP3Player mp3 = new MP3Player();
+		MP3Player mp3_2 = new MP3Player();
 
 		String comPath = "C:\\Users\\smhrd\\Desktop\\miniproject\\MiniProject\\개냥고치BGM\\";
 
 		ArrayList<mp3> musiclist = new ArrayList<mp3>();
+		ArrayList<mp3_2> musiclist2 = new ArrayList<mp3_2>();
 
 		musiclist.add(new mp3(comPath + "강아지선택.mp3"));// 0
 		musiclist.add(new mp3(comPath + "고양이선택.mp3"));
@@ -35,15 +37,38 @@ public class GameMain {
 		musiclist.add(new mp3(comPath + "알바비받음.mp3"));// 10
 		musiclist.add(new mp3(comPath + "터그놀이.mp3"));
 		musiclist.add(new mp3(comPath + "배경음.mp3"));
+		musiclist2.add(new mp3_2(comPath + "배경음.mp3"));
 		musiclist.add(new mp3(comPath + "레이저놀아주기.mp3"));
 		musiclist.add(new mp3(comPath + "상태보기.mp3"));
 		musiclist.add(new mp3(comPath + "시작음.mp3"));// 15
+		musiclist.add(new mp3(comPath + "강아지 성공음.mp3"));// 16
+		musiclist.add(new mp3(comPath + "고양이 성공음.mp3"));// 17
+		musiclist.add(new mp3(comPath + "실패음.mp3"));// 18
+		
 		while (true) {
 			ConsoleClear();
 			if (mp3.isPlaying()) {
 				mp3.stop();
 			}
+			if(mp3_2.isPlaying()) {
+				mp3.stop();
+			}
 			mp3.play(musiclist.get(15).getPath());
+			System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠤⠤⠤⢒⠒⠒⢢⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+					+ "⠀⠀⠀⢀⠀⢒⠒⠈⠀⠀⠀⠀⠀⠙⢳⣆⠀⠈⠓⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+					+ "⠀⠀⡐⠈⢰⡿⠀⠀⠀⠀⠀⠀⣀⡀⠀⢹⣆⠀⠀⣿⣄⣠⣤⣄⣀⡀⢀⣀⣀⣀\r\n"
+					+ "⠀⢸⠃⠀⢸⡇⠀⠂⠀⠀⠀⠀⢈⢥⣄⠀⢿⣤⣴⣿⡇⠹⠹⠀⠙⡏⠛⣉⣴⠾\r\n"
+					+ "⠀⢿⡄⢀⣸⡇⣴⣀⣦⠀⠀⠀⢷⣾⣿⡇⠈⣿⣿⡿⠀⡄⠀⠀⠀⢀⡀⠹⡇⢀\r\n"
+					+ "⠀⠈⠻⣿⣿⡇⠛⢿⡿⠀⢠⡄⠈⠙⠋⠀⢀⣼⡿⣠⠶⣥⠀⠀⠀⣤⣭⣀⢻⡟\r\n"
+					+ "⠀⠀⠀⠀⠙⠿⣃⣀⠀⠀⠈⠉⢀⡀⢤⣶⣿⣟⠀⢿⣿⡿⠀⠀⠸⣿⣿⡿⢘⡇\r\n"
+					+ "⠀⠀⠀⠀⠀⢀⣾⠟⠋⠉⠉⠉⠉⠀⠀⠁⠈⣿⡒⠂⠀⠀⠀⠹⠁⠈⠉⢒⡒⠁\r\n"
+					+ "⠀⠀⠀⠀⠀⣼⡛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠓⠒⠦⠤⠤⠤⠶⠎⠁⠀⠀\r\n"
+					+ "⠉⠀⡠⠀⣰⣿⣇⠀⠀⠀⡀⠀⠀⠀⢀⠀⠀⣸⣇⢠⠀⠄⠀⠀⠀⠀⣿⠀⠀⠀\r\n"
+					+ "⡔⠉⢠⠊⠈⢻⣿⠄⠀⠀⠻⣦⠀⣴⠃⠀⠀⣿⣿⠆⠀⠒⢦⠀⠀⣴⣿⡀⠀⠀\r\n"
+					+ "⢄⠀⣾⡁⠀⠀⣿⡆⠀⠀⠀⢿⡀⠿⠀⠀⢀⣿⣿⣶⡋⠉⠉⢧⣿⠋⢸⣷⠀⠀\r\n"
+					+ "⣨⣷⣿⣷⣤⣾⠿⢿⡆⠀⠀⠸⣧⡄⠀⠀⢺⠿⠿⡋⠃⠀⠀⠈⣇⠀⠸⡟⠠⣄\r\n"
+					+ "⣿⣿⣿⣿⣿⡀⠀⢰⡇⠀⠀⠀⣿⠀⠀⠀⠀⣧⠀⣸⣀⣇⠀⠀⢈⡀⠀⣘⣀⣼\r\n"
+					+ "⠈⠉⠙⠉⠉⠛⠋⠉⠗⠖⠒⠛⠛⠛⠒⠶⠒⠛⠟⠋⠋⠙⠛⠉⠉⠉⠉⠉⠉⠀");
 			System.out.println("========== 메인 메뉴 ==========");
 			System.out.println("[0]게임종료 [1]회원가입 [2]로그인 [3]랭킹");
 			int input = sc.nextInt();
@@ -79,6 +104,9 @@ public class GameMain {
 					if (mp3.isPlaying()) {
 						mp3.stop();
 					}
+					if(mp3_2.isPlaying()) {
+						mp3.stop();
+					}
 					mp3.play(musiclist.get(12).getPath()); // 계속 깔려있을 노래
 					ConsoleClear();
 					System.out.println("========== 게임 접속 ==========");
@@ -96,6 +124,19 @@ public class GameMain {
 							String petName = sc.next();
 
 							if (choice == 1) {
+								System.out.println("⠀⡘⠠⢮⣅⠂⢀⣠⠤⠤⠦⠀⣀⣀⣀⠀⢔⡒⡄⠀⠀⠀⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⠀⡇⠀⢀⡙⠃⠀⠀⠀⠀⠀⠀⠀⠁⣶⠛⠋⠀⡇⠀⠀⠀⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⠀⣇⣰⠆⠀⠀⠠⠄⠰⠀⠀⢀⡀⠀⠙⣷⣄⣼⡇⠀⠀⠀⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⠀⢸⡇⠀⢠⣶⣲⡆⠀⠀⠀⡠⢤⣄⠀⢹⣿⡟⠀⠀⠀⠀⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⠀⣼⣧⠀⠈⠹⠏⠁⠠⠀⠀⠿⣿⠟⠃⣸⣿⠁⠀⠀⠀⠀⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⡁⠼⢶⠒⠂⠀⠀⠀⠀⠐⠀⠀⠀⠬⣳⣾⡟⠣⠄⠀⠀⠀⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠁⠀⠀⠈⠑⢲⣄⠀⢀⠀⠀⣀⡀⣠⣤⡟⠛⠁⠑⠢⠀⠀⠀⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⠀⠀⠀⢰⠿⠁⠀⠈⠙⠛⠋⢻⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣘⣿⣿⡀⠀⠀⢐⠒⢀⠀⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⢦⡀⠀⠀⠀⠆⠀⢨⣿⣿⣿⡆⠀⠘⠄⠘⣦⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⠀⠀⢀⣼⠀⠈⢿⣦⣼⠇⠀⢠⣾⣟⠉⠙⣷⡀⠀⢸⣠⣼⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⠔⠒⠺⢿⠀⠀⣿⣿⡟⠀⣠⣾⡿⠷⣦⣤⣿⣧⣤⣾⣿⡿⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⣤⣤⣤⡎⠀⠀⣸⡏⠀⠀⢈⣋⠀⠀⠈⣿⣿⣿⣿⣿⠉⠀⠀⠀⠀");
 								mp3.play(musiclist.get(1).getPath());
 								String str = "고양이";
 								// 동물의 종류를 데이터베이스에 전달해주는 메소드 작성
@@ -106,6 +147,21 @@ public class GameMain {
 								}
 								break;
 							} else if (choice == 2) {
+								System.out.println("⠀⠀⠀⠀⢀⣀⣀⣀⡴⠶⠶⠶⠶⠶⠶⢦⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⠀⡶⢈⣹⠛⠉⠁⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠶⡀⠀⠀⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⡄⠒⠀⢠⡟⢃⡀⠀⠀⠀⠀⠀⠀⢀⣀⠀⠐⢶⡀⠀⠀⠑⠒⢢⣄⠀⠀\r\n"
+										+ "⠀⠀⢸⠀⠀⢠⣾⠁⣈⡁⠀⠀⠀⠀⠀⠀⣈⣉⠀⠀⠈⣿⠀⠀⠀⠀⠀⠈⢧⣤\r\n"
+										+ "⠀⢸⡇⠀⠀⢸⣧⡜⠉⣷⠀⠀⠀⠀⢠⣞⠉⣹⣿⡄⠀⣿⠀⠀⠀⠀⠀⠀⠀⣿\r\n"
+										+ "⠀⠸⢇⠀⠀⣸⡟⢿⣏⠛⠠⣤⡤⠀⠘⢻⣿⣿⡉⠃⠀⣿⠀⠀⠀⠀⠀⠀⣀⣿\r\n"
+										+ "⠀⠀⠸⣀⣀⡏⠀⠀⠀⠀⣀⣸⣀⡄⠀⠀⠀⠀⠀⠀⠀⠹⣾⣀⠀⠀⢀⣶⠟⠀\r\n"
+										+ "⠀⠀⠀⠉⠉⢷⡀⠀⠀⠀⠉⠀⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⣉⠶⠶⠎⠁⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⠀⠙⠶⢦⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣠⠶⠾⠉⠀⠀⠀⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⠋⠉⠉⠉⠉⠉⠉⠉⠉⠙⢿⣦⠀⠀⠀⠀⣤⢤⣤⠀\r\n"
+										+ "⠀⢀⡰⠶⢆⡀⠀⣀⡿⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣻⣿⣀⡀⠀⢷⡀⠹⣶\r\n"
+										+ "⢰⡏⠁⠀⠈⠛⠛⣿⠀⠀⠀⣴⠀⢀⡇⠀⠀⠀⠀⡾⠉⠉⠉⠉⢧⣴⠿⠀⠀⣿\r\n"
+										+ "⠸⢇⡀⠀⠀⠀⣀⠿⠀⠀⠀⣿⣧⡜⠇⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⣿⠀⠀⣀⠿\r\n"
+										+ "⠀⠘⢃⠀⠀⠸⣧⡀⠀⠀⠀⣿⣿⠁⠀⠀⠀⣴⣿⡇⠀⠀⠀⢀⣴⣿⣤⡞⠋⠀\r\n"
+										+ "⠀⠀⠘⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠀");
 								mp3.play(musiclist.get(0).getPath());
 								String str = "강아지";
 								int row = userDao.decideType(petName, str, userDto.getId());
@@ -188,15 +244,15 @@ public class GameMain {
 								ConsoleClear();
 								System.out.println("========== 아르바이트 ==========");
 								mp3.play(musiclist.get(9).getPath());
-								
+
 								System.out.println(name + "... ");
-								
+
 								try {
 									Thread.sleep(2500);
 								} catch (InterruptedException e) {
 									e.printStackTrace();
 								}
-								
+
 								System.out.println("조금만 기다려...");
 
 								try {
@@ -557,8 +613,20 @@ public class GameMain {
 
 							} else if (choice == 7) {
 								ConsoleClear();
+								System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⠀⠀⠀⠀⠐⡶⠂⣤⣤⣄⡀⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⠀⠀⠀⣀⡤⠖⠋⠉⠉⠉⠉⠙⠓⠦⣄⡚⠓⠂⠀⣨⡿⠃⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⠀⣠⠞⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠿⣦⠄⢾⣿⣤⡄⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⡼⠃⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠛⢷⡀⠀⠀⠀⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⢸⠃⠀⠻⢶⣤⣤⡶⠀⠀⠀⠀⣄⠀⠀⠀⠀⠀⠈⣷⠲⠤⣀⠀⣀⠀\r\n"
+										+ "⠀⠀⠀⠀⣸⠀⠀⠀⠀⠀⠀⢰⡄⠀⢀⡀⠻⢶⣤⣤⡶⠀⠀⣿⠀⠀⠈⠋⢉⡇\r\n"
+										+ "⠀⠀⢠⠞⢻⡆⠀⠀⠀⠀⠀⠈⠙⠛⠛⠁⠀⠀⠀⠀⠀⠀⢀⡿⠀⠀⠀⢀⢹⠀\r\n"
+										+ "⠀⢰⠃⠀⠘⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣾⣅⠀⠀⢀⡞⣸⠀\r\n"
+										+ "⢠⠿⠀⠀⠀⠈⢷⣄⠀⠀⠀⠀⠀⠀⠀⠀⣠⡴⠚⠉⠁⠀⠀⠀⠀⣠⠎⣰⠃⠀\r\n"
+										+ "⠘⠶⠚⠦⣀⡈⠛⠛⠳⢦⣤⣀⣀⠀⠴⠋⠁⠀⠀⠀⠀⠀⢀⡤⠞⢁⠞⠁⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⠉⠛⠒⠲⠶⠤⠤⣀⣀⠀⠀⠀⠀⠀⣴⠀⣮⡉⠤⠚⠁⠀⠀⠀⠀\r\n"
+										+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠓⠁⠀⠀⠀⠀⠀⠀⠀⠀");
 								System.out.println("========== 잠재우기 ==========");
-								
+
 								rank++;
 								hp += 5;
 								fullness -= 5;
@@ -598,11 +666,12 @@ public class GameMain {
 						if (hp <= 0 || fullness <= 0 || love <= 0) {
 							ConsoleClear();
 							System.out.println("게임 오버");
+							mp3.play(musiclist.get(18).getPath());
 							// 게임 오버 시 해당 id의 동물 정보를 'delete'하기
-							PetDTO lastPetDto = new PetDTO(name, spec, hp, fullness, love, money, snack, feed,
-									supply1, supply2);
+							PetDTO lastPetDto = new PetDTO(name, spec, hp, fullness, love, money, snack, feed, supply1,
+									supply2);
 							int row = petDao.delete(lastPetDto);
-							if(row > 0) {
+							if (row > 0) {
 								System.out.println(name + "을(를) 삭제했습니다.");
 								System.out.println("로그인 후 펫을 다시 생성해주세요.");
 							} else {
@@ -611,22 +680,54 @@ public class GameMain {
 						} else if (hp >= 60 && fullness >= 60 && love >= 60 && (hp + fullness + love) / 3 >= 70) {
 							ConsoleClear();
 							if (spec.equals("강아지")) {
+								mp3.play(musiclist.get(16).getPath());
+								System.out.println("⣿⣿⣿⣿⣿⡙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢹⣿⣿⣿⣿⣿\r\n"
+										+ "⣿⣿⣿⣿⣿⡻⣦⡙⠿⡿⣿⣿⣿⣿⡿⣽⣿⣿⢿⣿⣿⣿⣿⡟⣾⣿⣿⣿⣿⣿\r\n"
+										+ "⣿⣿⣿⣿⣿⣿⣾⣟⡂⠈⠻⣿⢿⡏⣞⡉⣌⡍⠻⢿⡿⠻⠟⢹⣿⣿⣿⣿⣿⣿\r\n"
+										+ "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⠀⢡⢍⣷⣾⠛⠻⣆⠈⠁⠐⢠⣿⣿⣿⣿⣿⣿⣿\r\n"
+										+ "⣿⣿⣿⣿⣿⣻⣿⣿⣿⣿⣿⣷⣄⢂⣿⣃⣶⣦⠏⠀⢂⣾⣿⡿⠿⣻⣿⣿⣿⣿\r\n"
+										+ "⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠻⠿⢿⣿⣿⣿⣿⣿⣵⣿⣟⣿⣶⣧⣿⣿⣿⣿⣿\r\n"
+										+ "⡿⢿⣿⣿⣿⣿⣿⣿⡏⣶⣦⣴⣴⡏⠀⠹⣿⡏⠉⢩⣈⣉⠛⣿⣿⣿⣿⣿⣿⣿\r\n"
+										+ "⡀⠀⠙⠿⢿⣿⣿⢡⣤⠙⢛⢿⣿⣿⣶⣶⣷⢷⣶⣶⣽⡿⣷⠼⢿⣿⣿⣿⣿⣿\r\n"
+										+ "⣿⣷⣦⠀⠀⠉⠉⣹⣇⠰⠿⣿⣿⣿⣿⣟⣾⣷⣿⣿⡿⣧⣤⡀⠂⢩⣿⣿⡿⣿\r\n"
+										+ "⣿⣿⣿⣇⠀⠀⠀⢿⣿⠗⠆⠀⠉⣿⢿⣿⣿⣿⣿⠀⠀⠈⢻⠁⡆⠸⠿⠟⢀⣿\r\n"
+										+ "⣿⣿⣿⣿⣶⣄⠀⠈⠻⢿⣦⡀⢀⣿⣿⣿⣷⣾⣿⣷⠀⢀⣤⡬⠂⠀⠀⠀⣸⣿\r\n"
+										+ "⣿⣿⣿⣿⣿⠿⠷⠀⠀⠈⠙⢿⣷⣤⢽⣿⡿⢿⣿⣷⣴⣿⡿⠃⠀⠀⠀⣸⠉⣿\r\n"
+										+ "⠅⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⡋⠁⠀⠀⠀⠀⠈⠏⣀⣿\r\n"
+										+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠁⣿\r\n"
+										+ "⣀⣾⣿⣆⣀⠀⠀⠀⠀⠀⢀⣻⣿⣿⣛⣻⣿⣿⣿⣻⣟⠀⠀⠀⠀⢀⣀⣀⣀⣿");
 								System.out.println("훌륭한 강아지로 자랐습니다");
 								// 훌륭한 강아지 정보 데이터 베이스에 'update'하기
 								UserDTO lastUserDto = new UserDTO(id, pw, rank, true);
 								int row = userDao.userUpdate(lastUserDto);
-								if(row > 0) {
+								if (row > 0) {
 									System.out.println("랭킹에 등록되었습니다.");
 								}
 								PetDTO lastPetDto = new PetDTO(name, spec, hp, fullness, love, money, snack, feed,
 										supply1, supply2);
 								petDao.update(lastPetDto);
 							} else {
+								mp3.play(musiclist.get(17).getPath());
+								System.out.println("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\r\n"
+										+ "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠙⠻⠅⠸⠟⠋⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\r\n"
+										+ "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢳⠷⠀⠀⠾⡞⢺⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\r\n"
+										+ "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⢫⡡⠖⠢⢌⡉⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\r\n"
+										+ "⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠓⠁⣸⣧⣬⣧⣼⣯⠙⠚⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿\r\n"
+										+ "⣿⣿⣿⣿⣿⠟⠉⠉⠉⠀⠦⠶⠿⠜⣿⣿⠫⠿⠶⠴⠀⠉⠉⠉⠻⣿⣿⣿⣿⣿\r\n"
+										+ "⣿⣿⣿⣿⠃⣀⠀⠀⢀⡄⠀⠀⠀⠀⢹⡏⠀⠀⠀⠀⢠⣀⠀⠀⣠⠘⣿⣿⣿⣿\r\n"
+										+ "⣿⣿⡿⠋⠘⢿⡿⠿⢿⣷⣄⡀⢀⣀⣼⣧⡀⡀⢀⣀⣾⡿⠿⢿⡿⠉⠙⢿⣿⣿\r\n"
+										+ "⣿⣿⣥⠖⢀⠈⠀⠀⣸⣿⣿⣿⡿⠟⢛⡛⠻⢿⣿⣿⣿⣇⠀⠀⠁⡀⠸⣬⣿⣿\r\n"
+										+ "⣿⣯⣸⠃⠈⠑⢿⡾⡟⢿⡿⣿⣷⠟⢺⡗⠻⣾⣿⣿⡿⢻⢷⡿⠚⠁⠐⣇⣽⣿\r\n"
+										+ "⣿⣥⡿⣷⣄⠀⠀⣴⣿⣾⣌⢿⣿⣏⣹⣏⣻⣿⡿⣉⣷⣿⣦⠀⠀⣠⣾⠿⣬⣿\r\n"
+										+ "⣿⣿⣷⡚⢿⣿⣦⣕⠈⠿⠿⠀⣿⣷⣾⣷⣾⣿⠀⠿⠿⠁⣪⣼⣾⡿⢓⣾⣿⣿\r\n"
+										+ "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣤⡀⠀⣠⣽⣿⣿⣏⣤⠀⢠⣤⣿⣿⣿⣿⣿⣿⣿⣿⣿\r\n"
+										+ "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣼⣿⣿⣿⣿⣿⣶⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\r\n"
+										+ "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿");
 								System.out.println("훌륭한 고양이로 자랐습니다.");
 								// 훌륭한 고양이 정보 데이터 베이스에 'update'하기
 								UserDTO lastUserDto = new UserDTO(id, pw, rank, true);
 								int row = userDao.userUpdate(lastUserDto);
-								if(row > 0) {
+								if (row > 0) {
 									System.out.println("랭킹에 등록되었습니다.");
 								}
 								PetDTO lastPetDto = new PetDTO(name, spec, hp, fullness, love, money, snack, feed,
@@ -656,13 +757,22 @@ public class GameMain {
 				ConsoleClear();
 				System.out.println("게임을 종료합니다.");
 				break;
-			} else if(input == 3) {
+			} else if (input == 3) {
 				UserDAO userDao = new UserDAO();
 				ArrayList<PetDTO> list = userDao.getRank();
-				for(PetDTO p : list) {
-					System.out.println(p.getName());
+				System.out.println("이름\t종류\t체력\t포만감\t애정도");
+				for (PetDTO p : list) {
+					System.out.println(p.getName() + "\t" + p.getSpec() + "\t" + p.getHp() + "\t" + p.getFullness() + "\t" + p.getLove());
 				}
-				
+				while (true) {
+					System.out.println("[0]메뉴로 돌아가기");
+					int rankInput = sc.nextInt();
+					
+					if(rankInput == 0) {
+						break;
+					}
+				}
+
 			} else {
 				ConsoleClear();
 				System.out.println("다시 입력해주세요.");

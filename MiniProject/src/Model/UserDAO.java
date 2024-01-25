@@ -154,7 +154,7 @@ public class UserDAO {
 	      try {
 	         getConn();
 	         
-	         String sql = "update miniproject.Player set rank_day = ?, clear = ? where id = ?";
+	         String sql = "update cgi_23K_BIG23_p1_2.player set rank_day = ?, clear = ? where id = ?";
 
 	         psmt = conn.prepareStatement(sql);
 
