@@ -17,7 +17,6 @@ public class PetDTO {
 
 	public PetDTO(String name, String spec, int hp, int fullness, int love, int money, int snack, int feed,
 			boolean supply1, boolean supply2) {
-		super();
 		this.name = name;
 		this.spec = spec;
 		this.hp = hp;
@@ -109,6 +108,7 @@ public class PetDTO {
 	public void setFeed(int feed) {
 		this.feed = feed;
 	}
+
 
 	
 	

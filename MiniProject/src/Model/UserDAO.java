@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserDAO {
 
@@ -79,7 +80,7 @@ public class UserDAO {
 			rs = psmt.executeQuery();
 
 			if (rs.next() == true) {
-				dto = new UserDTO(id, pw);
+				dto = new UserDTO(id, pw, 0, false);
 			}
 
 		} catch (Exception e) {
@@ -145,6 +146,59 @@ public class UserDAO {
 		}
 
 		return petDto;
+	}
+	
+	public int userUpdate(UserDTO userDto) {
+		int row = 0;
+	      
+	      try {
+	         getConn();
+	         
+	         String sql = "update miniproject.Player set rank_day = ?, clear = ? where id = ?";
+
+	         psmt = conn.prepareStatement(sql);
+
+	         psmt.setInt(1, userDto.getRank());
+	         psmt.setBoolean(2, userDto.isClear());
+	         psmt.setString(3, userDto.getId());
+
+	         row = psmt.executeUpdate();
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         getClose();
+	      }
+
+	      return row;
+	}
+	
+	public ArrayList<PetDTO> getRank() {
+		
+		ArrayList<PetDTO> list = new ArrayList<PetDTO>();
+		
+		try {
+			getConn();
+
+			String sql = "select * from player inner join pet on player.id = pet.id where clear = true order by rank_day asc";
+
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				list.add(new PetDTO(rs.getString("p_name"), rs.getString("spec"), rs.getInt("hp"),
+						rs.getInt("fullness"), rs.getInt("love"), rs.getInt("money"),rs.getInt("snack"), rs.getInt("feed"), rs.getBoolean("supply_st"), rs.getBoolean("supply_rd")));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}
+		
+		return list;
+		
 	}
 	
 }

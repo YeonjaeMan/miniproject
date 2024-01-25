@@ -70,5 +70,28 @@ public class PetDAO {
 	      return row;
 	   }
 	
+	public int delete(PetDTO petDto) {
+		  int row = 0;
+	      
+	      try {
+	         getConn();
+	         
+	         String sql = "delete from pet where p_name = ?";
+
+	         psmt = conn.prepareStatement(sql);
+
+	         psmt.setString(1, petDto.getName());
+
+	         row = psmt.executeUpdate();
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         getClose();
+	      }
+
+	      return row;
+	}
+	
 	
 }

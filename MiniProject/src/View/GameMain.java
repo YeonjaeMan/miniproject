@@ -45,7 +45,7 @@ public class GameMain {
 			}
 			mp3.play(musiclist.get(15).getPath());
 			System.out.println("========== 메인 메뉴 ==========");
-			System.out.println("[0]게임종료 [1]회원가입 [2]로그인");
+			System.out.println("[0]게임종료 [1]회원가입 [2]로그인 [3]랭킹");
 			int input = sc.nextInt();
 
 			if (input == 1) { // 회원가입
@@ -57,7 +57,7 @@ public class GameMain {
 				String pw = sc.next();
 
 				UserDAO userDao = new UserDAO();
-				UserDTO userDto = new UserDTO(id, pw);
+				UserDTO userDto = new UserDTO(id, pw, 0, false);
 				int row = userDao.join(userDto);
 
 				if (row > 0) {
@@ -133,6 +133,7 @@ public class GameMain {
 						int feed = petDto.getFeed();
 						boolean supply1 = petDto.isSupply1();
 						boolean supply2 = petDto.isSupply2();
+						int rank = userDto.getRank();
 
 						int howmany = 0;
 
@@ -150,7 +151,6 @@ public class GameMain {
 								System.out.println("건강 : " + hp);
 								System.out.println("포만감 : " + fullness);
 								System.out.println("애정 : " + love);
-								System.out.println();
 
 							} else if (choice == 2) {
 								mp3.play(musiclist.get(2).getPath());
@@ -187,12 +187,20 @@ public class GameMain {
 							} else if (choice == 3) {
 								ConsoleClear();
 								System.out.println("========== 아르바이트 ==========");
-								System.out.println(name + " 조금만 기다려...");
-
 								mp3.play(musiclist.get(9).getPath());
+								
+								System.out.println(name + "... ");
+								
+								try {
+									Thread.sleep(2500);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+								
+								System.out.println("조금만 기다려...");
 
 								try {
-									Thread.sleep(5000);
+									Thread.sleep(2500);
 								} catch (InterruptedException e) {
 									e.printStackTrace();
 								}
@@ -468,6 +476,7 @@ public class GameMain {
 												love += 15;
 												fullness -= 15;
 												hp -= 5;
+												printInfo(name, hp, fullness, love, money);
 											} else {
 												System.out.println("목줄을 구매해주세요.");
 											}
@@ -484,6 +493,7 @@ public class GameMain {
 												love += 10;
 												fullness -= 10;
 												hp -= 5;
+												printInfo(name, hp, fullness, love, money);
 											} else {
 												System.out.println("인형을 구매해주세요.");
 											}
@@ -511,6 +521,7 @@ public class GameMain {
 												love += 15;
 												fullness -= 15;
 												hp -= 5;
+												printInfo(name, hp, fullness, love, money);
 											} else {
 												ConsoleClear();
 												System.out.println("캣휠이 없어서 캣휠을 태울 수 없습니다ㅠㅠ");
@@ -529,12 +540,10 @@ public class GameMain {
 												love += 10;
 												fullness -= 10;
 												hp -= 5;
+												printInfo(name, hp, fullness, love, money);
 											} else {
 												ConsoleClear();
 												System.out.println("레이저가 없어서 사냥놀이를 할 수 없습니다 ㅠㅠ");
-												love += 5;
-												fullness -= 10;
-												hp -= 5;
 											}
 
 										} else if (playCatChoice == 0) {
@@ -549,9 +558,11 @@ public class GameMain {
 							} else if (choice == 7) {
 								ConsoleClear();
 								System.out.println("========== 잠재우기 ==========");
-
+								
+								rank++;
 								hp += 5;
 								fullness -= 5;
+								printInfo(name, hp, fullness, love, money);
 
 								PetDTO lastPetDto = new PetDTO(name, spec, hp, fullness, love, money, snack, feed,
 										supply1, supply2);
@@ -588,14 +599,39 @@ public class GameMain {
 							ConsoleClear();
 							System.out.println("게임 오버");
 							// 게임 오버 시 해당 id의 동물 정보를 'delete'하기
+							PetDTO lastPetDto = new PetDTO(name, spec, hp, fullness, love, money, snack, feed,
+									supply1, supply2);
+							int row = petDao.delete(lastPetDto);
+							if(row > 0) {
+								System.out.println(name + "을(를) 삭제했습니다.");
+								System.out.println("로그인 후 펫을 다시 생성해주세요.");
+							} else {
+								System.out.println("데이터 삭제 오류");
+							}
 						} else if (hp >= 60 && fullness >= 60 && love >= 60 && (hp + fullness + love) / 3 >= 70) {
 							ConsoleClear();
 							if (spec.equals("강아지")) {
 								System.out.println("훌륭한 강아지로 자랐습니다");
 								// 훌륭한 강아지 정보 데이터 베이스에 'update'하기
+								UserDTO lastUserDto = new UserDTO(id, pw, rank, true);
+								int row = userDao.userUpdate(lastUserDto);
+								if(row > 0) {
+									System.out.println("랭킹에 등록되었습니다.");
+								}
+								PetDTO lastPetDto = new PetDTO(name, spec, hp, fullness, love, money, snack, feed,
+										supply1, supply2);
+								petDao.update(lastPetDto);
 							} else {
 								System.out.println("훌륭한 고양이로 자랐습니다.");
 								// 훌륭한 고양이 정보 데이터 베이스에 'update'하기
+								UserDTO lastUserDto = new UserDTO(id, pw, rank, true);
+								int row = userDao.userUpdate(lastUserDto);
+								if(row > 0) {
+									System.out.println("랭킹에 등록되었습니다.");
+								}
+								PetDTO lastPetDto = new PetDTO(name, spec, hp, fullness, love, money, snack, feed,
+										supply1, supply2);
+								petDao.update(lastPetDto);
 							}
 						} else {
 							System.out.println("메인메뉴로 돌아갑니다.");
@@ -620,6 +656,13 @@ public class GameMain {
 				ConsoleClear();
 				System.out.println("게임을 종료합니다.");
 				break;
+			} else if(input == 3) {
+				UserDAO userDao = new UserDAO();
+				ArrayList<PetDTO> list = userDao.getRank();
+				for(PetDTO p : list) {
+					System.out.println(p.getName());
+				}
+				
 			} else {
 				ConsoleClear();
 				System.out.println("다시 입력해주세요.");
