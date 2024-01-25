@@ -1,6 +1,7 @@
 package View;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 import Model.PetDAO;
@@ -15,7 +16,8 @@ public class GameMain {
 
 		// MP3파일 3개 부재 주석으로 처리해놨음
 		Scanner sc = new Scanner(System.in);
-
+		Random rand = new Random();
+		
 		MP3Player mp3 = new MP3Player();
 		MP3Player mp3_2 = new MP3Player();
 
@@ -145,6 +147,12 @@ public class GameMain {
 									System.out.println("이름 또는 종류를 다시 지어주세요.");
 									continue;
 								}
+								
+								try {
+									Thread.sleep(2000);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
 								break;
 							} else if (choice == 2) {
 								System.out.println("⠀⠀⠀⠀⢀⣀⣀⣀⡴⠶⠶⠶⠶⠶⠶⢦⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀\r\n"
@@ -168,6 +176,12 @@ public class GameMain {
 								if (row <= 0) {
 									System.out.println("이름 또는 종류를 다시 지어주세요.");
 									continue;
+								}
+								
+								try {
+									Thread.sleep(2000);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
 								}
 								break;
 							} else {
@@ -194,85 +208,113 @@ public class GameMain {
 						int howmany = 0;
 
 						while ((hp > 0 && fullness > 0 && love > 0)
-								&& (hp < 60 || fullness < 60 || love < 60 || (hp + fullness + love) / 3 < 70)) {
+								&& (hp < 75 || fullness < 75 || love < 85 || (hp + fullness + love) / 3 < 85)) {
+							System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠤⠤⠤⢒⠒⠒⢢⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+									+ "⠀⠀⠀⢀⠀⢒⠒⠈⠀⠀⠀⠀⠀⠙⢳⣆⠀⠈⠓⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+									+ "⠀⠀⡐⠈⢰⡿⠀⠀⠀⠀⠀⠀⣀⡀⠀⢹⣆⠀⠀⣿⣄⣠⣤⣄⣀⡀⢀⣀⣀⣀\r\n"
+									+ "⠀⢸⠃⠀⢸⡇⠀⠂⠀⠀⠀⠀⢈⢥⣄⠀⢿⣤⣴⣿⡇⠹⠹⠀⠙⡏⠛⣉⣴⠾\r\n"
+									+ "⠀⢿⡄⢀⣸⡇⣴⣀⣦⠀⠀⠀⢷⣾⣿⡇⠈⣿⣿⡿⠀⡄⠀⠀⠀⢀⡀⠹⡇⢀\r\n"
+									+ "⠀⠈⠻⣿⣿⡇⠛⢿⡿⠀⢠⡄⠈⠙⠋⠀⢀⣼⡿⣠⠶⣥⠀⠀⠀⣤⣭⣀⢻⡟\r\n"
+									+ "⠀⠀⠀⠀⠙⠿⣃⣀⠀⠀⠈⠉⢀⡀⢤⣶⣿⣟⠀⢿⣿⡿⠀⠀⠸⣿⣿⡿⢘⡇\r\n"
+									+ "⠀⠀⠀⠀⠀⢀⣾⠟⠋⠉⠉⠉⠉⠀⠀⠁⠈⣿⡒⠂⠀⠀⠀⠹⠁⠈⠉⢒⡒⠁\r\n"
+									+ "⠀⠀⠀⠀⠀⣼⡛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠓⠒⠦⠤⠤⠤⠶⠎⠁⠀⠀\r\n"
+									+ "⠉⠀⡠⠀⣰⣿⣇⠀⠀⠀⡀⠀⠀⠀⢀⠀⠀⣸⣇⢠⠀⠄⠀⠀⠀⠀⣿⠀⠀⠀\r\n"
+									+ "⡔⠉⢠⠊⠈⢻⣿⠄⠀⠀⠻⣦⠀⣴⠃⠀⠀⣿⣿⠆⠀⠒⢦⠀⠀⣴⣿⡀⠀⠀\r\n"
+									+ "⢄⠀⣾⡁⠀⠀⣿⡆⠀⠀⠀⢿⡀⠿⠀⠀⢀⣿⣿⣶⡋⠉⠉⢧⣿⠋⢸⣷⠀⠀\r\n"
+									+ "⣨⣷⣿⣷⣤⣾⠿⢿⡆⠀⠀⠸⣧⡄⠀⠀⢺⠿⠿⡋⠃⠀⠀⠈⣇⠀⠸⡟⠠⣄\r\n"
+									+ "⣿⣿⣿⣿⣿⡀⠀⢰⡇⠀⠀⠀⣿⠀⠀⠀⠀⣧⠀⣸⣀⣇⠀⠀⢈⡀⠀⣘⣀⣼\r\n"
+									+ "⠈⠉⠙⠉⠉⠛⠋⠉⠗⠖⠒⠛⠛⠛⠒⠶⠒⠛⠟⠋⠋⠙⠛⠉⠉⠉⠉⠉⠉⠀");
 							System.out.println("========== 홈 ==========");
 							System.out.println(
-									"[0]로그인 이동 [1]상태보기 [2]가방확인 [3]알바하기(+6000원) [4]밥주기 [5]병원가기 [6]놀아주기 [7]잠재우기(저장)");
+									"[0]로그인 이동 [1]상태보기 [2]가방확인 [3]도박하기 [4]알바하기 [5]밥주기 [6]동물병원가기 [7]놀아주기 [8]잠재우기(저장)");
 							int choice = sc.nextInt();
 
 							if (choice == 1) {
 								mp3.play(musiclist.get(14).getPath());
-								ConsoleClear();
-								System.out.println("========== " + name + "의 상태 ==========");
-								System.out.println("건강 : " + hp);
-								System.out.println("포만감 : " + fullness);
-								System.out.println("애정 : " + love);
+								statusCheck(name, hp, fullness, love);
 
 							} else if (choice == 2) {
 								mp3.play(musiclist.get(2).getPath());
-								ConsoleClear();
-								System.out.println("========== 가방 ==========");
-								System.out.println("돈 : " + money + "원");
-								System.out.println("간식 : " + snack + "개");
-								System.out.println("사료 : " + feed + "개");
-								if (spec.equals("강아지")) {
-									if (supply1 == true) {
-										System.out.println("목줄 有");
-									} else {
-										System.out.println("목줄 無");
-									}
-									if (supply2 == true) {
-										System.out.println("삑삑이 有");
-									} else {
-										System.out.println("삑삑이 無");
-									}
-								}
-								if (spec.equals("고양이")) {
-									if (supply1 == true) {
-										System.out.println("캣휠 有");
-									} else {
-										System.out.println("캣휠 無");
-									}
-									if (supply2 == true) {
-										System.out.println("레이저 有");
-									} else {
-										System.out.println("레이저 無");
-									}
-								}
+								bagCheck(money, snack, feed, spec, supply1, supply2);
 
 							} else if (choice == 3) {
 								ConsoleClear();
+								System.out.println("========== 도박장 ==========");
+								if(money > 0) {
+									mp3.play(musiclist.get(9).getPath());
+									System.out.println(name + "...");
+									System.out.println(" (담배 한모금빨며) 쓰읍 후...");
+									
+									try {
+										Thread.sleep(2500);
+									} catch (InterruptedException e) {
+										e.printStackTrace();
+									}
+	
+									System.out.println("조금만 기다려...");
+	
+									try {
+										Thread.sleep(2500);
+									} catch (InterruptedException e) {
+										e.printStackTrace();
+									}
+									
+									mp3.play(musiclist.get(10).getPath());
+									int randMoney = (rand.nextInt(60) + 1) * 500;
+									int rMoney = rand.nextInt(2);
+									hp -= 10;
+									fullness -= 10;
+									love -= 10;
+									
+									if(rMoney % 2 == 0) {
+										money = money + randMoney;
+										printInfo(name, hp, fullness, love, money);
+										System.out.println("돈" + randMoney + "원을 벌었습니다.");
+									} else {
+										money = money - randMoney;
+										printInfo(name, hp, fullness, love, money);
+										System.out.println("돈" + randMoney + "원을 잃었습니다.");
+									}
+								} else {
+									System.out.println("도박 할 수 없습니다.");
+								}
+
+							} else if(choice == 4) {
+								ConsoleClear();
 								System.out.println("========== 아르바이트 ==========");
 								mp3.play(musiclist.get(9).getPath());
-
-								System.out.println(name + "... ");
+								System.out.println(name + ".. 금방 갈게");
 
 								try {
-									Thread.sleep(2500);
+									Thread.sleep(5000);
 								} catch (InterruptedException e) {
 									e.printStackTrace();
 								}
 
-								System.out.println("조금만 기다려...");
+								System.out.println("알바중...");
 
 								try {
-									Thread.sleep(2500);
+									Thread.sleep(5000);
 								} catch (InterruptedException e) {
 									e.printStackTrace();
 								}
-
+								
 								mp3.play(musiclist.get(10).getPath());
-
-								money = money + 6000;
-								System.out.println("돈 6000원을 벌었습니다.");
-								System.out.println();
-
-							} else if (choice == 4) {
+								
+								hp -= 5;
+								fullness -= 5;
+								love -= 5;
+								money = money + 2000;
+								
+								printInfo(name, hp, fullness, love, money);
+								System.out.println("돈 2000원을 벌었습니다.");
+								
+							} else if (choice == 5) {
 								ConsoleClear();
 								while ((hp > 0 && fullness > 0 && love > 0)
-										&& (hp < 60 || fullness < 60 || love < 60 || (hp + fullness + love) / 3 < 70)) {
+										&& (hp < 75 || fullness < 75 || love < 85 || (hp + fullness + love) / 3 < 85)) {
 									System.out.println("========== 밥주기 ==========");
-									System.out.println("[0]이전으로 [1]간식(포만+10 애정+10) [2]사료(건강+5 포만+15 애정+5)");
+									System.out.println("[0]이전으로 [1]간식(포만+5 애정+10) [2]사료(건강+10 포만+15 애정+5) [3]상태보기 [4]가방확인");
 									int babChoice = sc.nextInt();
 									if (babChoice == 1) {
 										ConsoleClear();
@@ -287,9 +329,9 @@ public class GameMain {
 												e.printStackTrace();
 											}
 											snack = snack - snackNum;
-											hp -= 5;
-											fullness += 10;
-											love += 10;
+											hp -= 5 * snackNum;
+											fullness += 5 * snackNum;
+											love += 10 * snackNum;
 											System.out.println("간식을 주었습니다.");
 											printInfo(name, hp, fullness, love, money);
 										} else {
@@ -308,15 +350,21 @@ public class GameMain {
 												e.printStackTrace();
 											}
 											feed = feed - feedNum;
-											hp += 5;
-											fullness += 15;
-											love += 5;
+											hp += 10 * feedNum;
+											fullness += 15 * feedNum;
+											love += 5 * feedNum;
 											System.out.println("사료을 주었습니다.");
 											// 사료먹는 소리
 											printInfo(name, hp, fullness, love, money);
 										} else {
 											System.out.println("간식이 부족합니다.");
 										}
+									} else if(babChoice == 3) {
+										mp3.play(musiclist.get(14).getPath());
+										statusCheck(name, hp, fullness, love);
+									} else if(babChoice == 4) {
+										mp3.play(musiclist.get(2).getPath());
+										bagCheck(money, snack, feed, spec, supply1, supply2);
 									} else if (babChoice == 0) {
 										ConsoleClear();
 										System.out.println("이전으로 돌아갑니다.");
@@ -326,15 +374,15 @@ public class GameMain {
 										System.out.println("번호를 다시 입력해주세요.");
 									}
 								}
-							} else if (choice == 5) {
+							} else if (choice == 6) {
 								mp3.play(musiclist.get(3).getPath());
 								ConsoleClear();
-								System.out.println("========== 병원 입장 ==========");
+								System.out.println("========== 동물 병원 입장 ==========");
 
 								while ((hp > 0 && fullness > 0 && love > 0)
-										&& (hp < 60 || fullness < 60 || love < 60 || (hp + fullness + love) / 3 < 70)) {
+										&& (hp < 75 || fullness < 75 || love < 85 || (hp + fullness + love) / 3 < 85)) {
 									System.out.print(
-											"[0]집 이동 [1]간식사기(3000원) [2]사료사기(4000원) [3]진료받기(4000원 건강+20) [4]애견용품");
+											"[0]집 이동 [1]간식사기(3000원) [2]사료사기(4000원) [3]진료받기(5000원 건강+20) [4]애견용품 [5]상태보기 [6]가방확인");
 									int hosChoice = sc.nextInt();
 
 									if (hosChoice == 1) {
@@ -376,19 +424,19 @@ public class GameMain {
 											} catch (InterruptedException e) {
 												e.printStackTrace();
 											}
-											money -= 3000;
+											money -= 5000;
 											hp += 20;
-											fullness -= 20;
-											love -= 30;
+											fullness -= 10;
+											love -= 20;
 											printInfo(name, hp, fullness, love, money);
 										}
 									} else if (hosChoice == 4) {
 										ConsoleClear();
 										if (spec.equals("강아지")) {
-											while ((hp > 0 && fullness > 0 && love > 0) && (hp < 60 || fullness < 60
-													|| love < 60 || (hp + fullness + love) / 3 < 70)) {
+											while ((hp > 0 && fullness > 0 && love > 0)
+													&& (hp < 75 || fullness < 75 || love < 85 || (hp + fullness + love) / 3 < 85)) {
 												System.out.println(
-														"[0]나가기 [1]옷사기(10000원 애정+5) [2]목줄사기(50000원 애정+5) [3]인형(30000원 애정+5)");
+														"[0]나가기 [1]옷사기(10000원 애정+5) [2]목줄사기(25000원 애정+5) [3]인형(20000원 애정+5) [4]상태보기 [5]가방확인");
 												int hosDogChoice = sc.nextInt();
 												if (hosDogChoice == 1) {
 													ConsoleClear();
@@ -404,13 +452,13 @@ public class GameMain {
 												} else if (hosDogChoice == 2) {
 													ConsoleClear();
 													if (supply1 == false) {
-														if (money < 50000) {
+														if (money < 25000) {
 															System.out.println("돈이 부족합니다.");
 														} else {
 															supply1 = true;
 															System.out.println("목줄을 획득합니다.");
 															mp3.play(musiclist.get(10).getPath());
-															money -= 50000;
+															money -= 25000;
 															hp -= 5;
 															fullness -= 10;
 															love += 5;
@@ -422,13 +470,13 @@ public class GameMain {
 												} else if (hosDogChoice == 3) {
 													ConsoleClear();
 													if (supply2 == false) {
-														if (money < 30000) {
+														if (money < 20000) {
 															System.out.println("돈이 부족합니다.");
 														} else {
 															supply2 = true;
 															System.out.println("인형을 획득합니다.");
 															mp3.play(musiclist.get(10).getPath());
-															money -= 30000;
+															money -= 20000;
 															hp -= 5;
 															fullness -= 10;
 															love += 5;
@@ -437,6 +485,12 @@ public class GameMain {
 													} else {
 														System.out.println("인형이 이미 있습니다.");
 													}
+												} else if(hosDogChoice == 4) {
+													mp3.play(musiclist.get(14).getPath());
+													statusCheck(name, hp, fullness, love);
+												} else if(hosDogChoice == 5) {
+													mp3.play(musiclist.get(2).getPath());
+													bagCheck(money, snack, feed, spec, supply1, supply2);
 												} else if (hosDogChoice == 0) {
 													ConsoleClear();
 													break;
@@ -444,10 +498,10 @@ public class GameMain {
 											}
 										}
 										if (spec.equals("고양이")) {
-											while ((hp > 0 && fullness > 0 && love > 0) && (hp < 60 || fullness < 60
-													|| love < 60 || (hp + fullness + love) / 3 < 70)) {
+											while ((hp > 0 && fullness > 0 && love > 0)
+													&& (hp < 75 || fullness < 75 || love < 85 || (hp + fullness + love) / 3 < 85)) {
 												System.out.println(
-														"[0]나가기 [1]옷사기(10000원 애정+5) [2]캣휠(50000원 애정+5) [3]레이저(30000원 애정+5)");
+														"[0]나가기 [1]옷사기(10000원 애정+5) [2]캣휠(25000원 애정+5) [3]레이저(20000원 애정+5) [4]상태보기 [5]가방확인");
 												int hosCatChoice = sc.nextInt();
 												if (hosCatChoice == 1) {
 													ConsoleClear();
@@ -463,13 +517,13 @@ public class GameMain {
 												} else if (hosCatChoice == 2) {
 													ConsoleClear();
 													if (supply1 == false) {
-														if (money < 50000) {
+														if (money < 25000) {
 															System.out.println("돈이 부족합니다.");
 														} else {
 															supply1 = true;
 															System.out.println("캣휠을 획득합니다.");
 															mp3.play(musiclist.get(10).getPath());
-															money -= 50000;
+															money -= 25000;
 															hp -= 5;
 															fullness -= 10;
 															love += 5;
@@ -481,14 +535,14 @@ public class GameMain {
 												} else if (hosCatChoice == 3) {
 													ConsoleClear();
 													if (supply2 == false) {
-														if (money < 30000) {
+														if (money < 20000) {
 															System.out.println("돈이 부족합니다.");
 														} else {
 															supply2 = true;
-															money -= 30000;
-															hp -= 0;
-															fullness -= 0;
-															love -= 0;
+															money -= 20000;
+															hp -= 5;
+															fullness -= 10;
+															love += 5;
 															System.out.println("레이저을 획득합니다.");
 															mp3.play(musiclist.get(10).getPath());
 															printInfo(name, hp, fullness, love, money);
@@ -496,7 +550,13 @@ public class GameMain {
 													} else {
 														System.out.println("레이저가 이미 있습니다.");
 													}
-												} else if (hosCatChoice == 4) {
+												} else if(hosCatChoice == 4) {
+													mp3.play(musiclist.get(14).getPath());
+													statusCheck(name, hp, fullness, love);
+												} else if(hosCatChoice == 5) {
+													mp3.play(musiclist.get(2).getPath());
+													bagCheck(money, snack, feed, spec, supply1, supply2);
+												} else if (hosCatChoice == 0) {
 													ConsoleClear();
 													break;
 												}
@@ -510,13 +570,13 @@ public class GameMain {
 									}
 								}
 
-							} else if (choice == 6) {
+							} else if (choice == 7) {
 								ConsoleClear();
 								System.out.println("========== 놀아주기 ==========");
 								while ((hp > 0 && fullness > 0 && love > 0)
-										&& (hp < 60 || fullness < 60 || love < 60 || (hp + fullness + love) / 3 < 70)) {
+										&& (hp < 75 || fullness < 75 || love < 85 || (hp + fullness + love) / 3 < 85)) {
 									if (spec.equals("강아지")) {
-										System.out.println("[0]나가기 [1]산책(애정+15) [2]터그놀이(애정+10)");
+										System.out.println("[0]나가기 [1]산책(애정+15) [2]터그놀이(애정+10) [3]상태보기 [4]가방확인");
 										int playDogChoice = sc.nextInt();
 
 										if (playDogChoice == 1) {
@@ -529,9 +589,9 @@ public class GameMain {
 												} catch (InterruptedException e) {
 													e.printStackTrace();
 												}
-												love += 15;
-												fullness -= 15;
 												hp -= 5;
+												fullness -= 15;
+												love += 15;
 												printInfo(name, hp, fullness, love, money);
 											} else {
 												System.out.println("목줄을 구매해주세요.");
@@ -546,9 +606,9 @@ public class GameMain {
 												} catch (InterruptedException e) {
 													e.printStackTrace();
 												}
-												love += 10;
-												fullness -= 10;
 												hp -= 5;
+												fullness -= 10;
+												love += 10;
 												printInfo(name, hp, fullness, love, money);
 											} else {
 												System.out.println("인형을 구매해주세요.");
@@ -574,9 +634,9 @@ public class GameMain {
 												} catch (InterruptedException e) {
 													e.printStackTrace();
 												}
-												love += 15;
-												fullness -= 15;
 												hp -= 5;
+												fullness -= 15;
+												love += 15;
 												printInfo(name, hp, fullness, love, money);
 											} else {
 												ConsoleClear();
@@ -593,15 +653,21 @@ public class GameMain {
 											}
 											if (supply2 == true) {
 												System.out.println("사냥놀이 해줍니다.");
-												love += 10;
-												fullness -= 10;
 												hp -= 5;
+												fullness -= 10;
+												love += 10;
 												printInfo(name, hp, fullness, love, money);
 											} else {
 												ConsoleClear();
 												System.out.println("레이저가 없어서 사냥놀이를 할 수 없습니다 ㅠㅠ");
 											}
 
+										} else if(playCatChoice == 4) {
+											mp3.play(musiclist.get(14).getPath());
+											statusCheck(name, hp, fullness, love);
+										} else if(playCatChoice == 5) {
+											mp3.play(musiclist.get(2).getPath());
+											bagCheck(money, snack, feed, spec, supply1, supply2);
 										} else if (playCatChoice == 0) {
 											ConsoleClear();
 											System.out.println("이전으로 돌아갑니다.");
@@ -611,7 +677,7 @@ public class GameMain {
 									}
 								}
 
-							} else if (choice == 7) {
+							} else if (choice == 8) {
 								ConsoleClear();
 								System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⠀⠀⠀⠀⠐⡶⠂⣤⣤⣄⡀⠀⠀⠀\r\n"
 										+ "⠀⠀⠀⠀⠀⠀⠀⠀⣀⡤⠖⠋⠉⠉⠉⠉⠙⠓⠦⣄⡚⠓⠂⠀⣨⡿⠃⠀⠀⠀\r\n"
@@ -628,13 +694,13 @@ public class GameMain {
 								System.out.println("========== 잠재우기 ==========");
 
 								rank++;
-								hp += 5;
-								fullness -= 5;
+								hp += 15;
+								
 								printInfo(name, hp, fullness, love, money);
 
 								PetDTO lastPetDto = new PetDTO(name, spec, hp, fullness, love, money, snack, feed,
 										supply1, supply2);
-
+								
 								int row = petDao.update(lastPetDto);
 
 								System.out.println("토닥토닥... 닥토닥토...");
@@ -677,10 +743,11 @@ public class GameMain {
 							} else {
 								System.out.println("데이터 삭제 오류");
 							}
-						} else if (hp >= 60 && fullness >= 60 && love >= 60 && (hp + fullness + love) / 3 >= 70) {
+						} else if (hp >= 75 && fullness >= 75 && love >= 85 && (hp + fullness + love) / 3 >= 85) {
 							ConsoleClear();
 							if (spec.equals("강아지")) {
 								mp3.play(musiclist.get(16).getPath());
+								
 								System.out.println("⣿⣿⣿⣿⣿⡙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢹⣿⣿⣿⣿⣿\r\n"
 										+ "⣿⣿⣿⣿⣿⡻⣦⡙⠿⡿⣿⣿⣿⣿⡿⣽⣿⣿⢿⣿⣿⣿⣿⡟⣾⣿⣿⣿⣿⣿\r\n"
 										+ "⣿⣿⣿⣿⣿⣿⣾⣟⡂⠈⠻⣿⢿⡏⣞⡉⣌⡍⠻⢿⡿⠻⠟⢹⣿⣿⣿⣿⣿⣿\r\n"
@@ -703,9 +770,15 @@ public class GameMain {
 								if (row > 0) {
 									System.out.println("랭킹에 등록되었습니다.");
 								}
+								printInfo(name, hp, fullness, love, money);
 								PetDTO lastPetDto = new PetDTO(name, spec, hp, fullness, love, money, snack, feed,
 										supply1, supply2);
 								petDao.update(lastPetDto);
+								try {
+									Thread.sleep(30000);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
 							} else {
 								mp3.play(musiclist.get(17).getPath());
 								System.out.println("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\r\n"
@@ -730,19 +803,20 @@ public class GameMain {
 								if (row > 0) {
 									System.out.println("랭킹에 등록되었습니다.");
 								}
+								printInfo(name, hp, fullness, love, money);
 								PetDTO lastPetDto = new PetDTO(name, spec, hp, fullness, love, money, snack, feed,
 										supply1, supply2);
 								petDao.update(lastPetDto);
+								try {
+									Thread.sleep(30000);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
 							}
 						} else {
 							System.out.println("메인메뉴로 돌아갑니다.");
 						}
 
-						try {
-							Thread.sleep(5000);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
 					}
 
 				} else {
@@ -760,10 +834,10 @@ public class GameMain {
 			} else if (input == 3) {
 				UserDAO userDao = new UserDAO();
 				ArrayList<PetDTO> list = userDao.getRank();
-				System.out.println("이름\t종류\t체력\t포만감\t애정도");
-				for (PetDTO p : list) {
-					System.out.println(p.getName() + "\t" + p.getSpec() + "\t" + p.getHp() + "\t" + p.getFullness() + "\t" + p.getLove());
+				for(int i = 0; i < list.size(); i++) {
+					System.out.println((i+1) + "위. " + "이름 : " + list.get(i).getName() + "\t" + "종류 : " + list.get(i).getSpec() + "\t" + "hp : " + list.get(i).getHp() + "\t" + "포만감 : " +list.get(i).getFullness() + "\t" + "애정 : " + list.get(i).getLove());
 				}
+				System.out.println("=================================");
 				while (true) {
 					System.out.println("[0]메뉴로 돌아가기");
 					int rankInput = sc.nextInt();
@@ -803,7 +877,7 @@ public class GameMain {
 		} else if (love < 0) {
 			love = 0;
 		}
-
+		
 //		try {
 //			Thread.sleep(1000);
 //		} catch (InterruptedException e) {
@@ -819,6 +893,34 @@ public class GameMain {
 		for (int i = 0; i < 50; ++i)
 			System.out.println();
 
+	}
+	
+	public static void statusCheck(String name, int hp, int fullness, int love) {
+		ConsoleClear();
+		System.out.println("========== " + name + "의 상태 ==========");
+		System.out.println("건강 : " + hp);
+		System.out.println("포만감 : " + fullness);
+		System.out.println("애정 : " + love);
+	}
+	
+	public static void bagCheck(int money, int snack, int feed, String spec, boolean supply1, boolean supply2) {
+		ConsoleClear();
+		System.out.println("========== 가방 ==========");
+		System.out.println("돈 : " + money + "원");
+		System.out.println("간식 : " + snack + "개");
+		System.out.println("사료 : " + feed + "개");
+		if (spec.equals("강아지")) {
+			if (supply1 == true) {
+				System.out.println("목줄 有");
+			} else {
+				System.out.println("목줄 無");
+			}
+			if (supply2 == true) {
+				System.out.println("삑삑이 有");
+			} else {
+				System.out.println("삑삑이 無");
+			}
+		}
 	}
 
 }

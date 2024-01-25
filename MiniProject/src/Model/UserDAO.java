@@ -180,7 +180,7 @@ public class UserDAO {
 		try {
 			getConn();
 
-			String sql = "select * from player inner join pet on player.id = pet.id where clear = true order by rank_day asc";
+			String sql = "select * from player inner join pet on player.id = pet.id where clear = true order by rank_day desc";
 
 			psmt = conn.prepareStatement(sql);
 
