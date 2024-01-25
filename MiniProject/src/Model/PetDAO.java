@@ -45,7 +45,7 @@ public class PetDAO {
 	      try {
 	         getConn();
 	         
-	         String sql = "update miniproject.pet set Hp = ?, Fullness = ?, Love = ?, money = ?, supply_st = ?, supply_rd = ? where p_name = ?";
+	         String sql = "update miniproject.pet set Hp = ?, Fullness = ?, Love = ?, money = ?, snack = ?, feed = ?, supply_st = ?, supply_rd = ? where p_name = ?";
 
 	         psmt = conn.prepareStatement(sql);
 
@@ -53,9 +53,11 @@ public class PetDAO {
 	         psmt.setInt(2, petDto.getFullness());
 	         psmt.setInt(3, petDto.getLove());
 	         psmt.setInt(4,  petDto.getMoney());
-	         psmt.setBoolean(5, petDto.isSupply1());
-	         psmt.setBoolean(6, petDto.isSupply2());
-	         psmt.setString(7, petDto.getName());
+	         psmt.setInt(5, petDto.getSnack());
+	         psmt.setInt(6, petDto.getFeed());
+	         psmt.setBoolean(7, petDto.isSupply1());
+	         psmt.setBoolean(8, petDto.isSupply2());
+	         psmt.setString(9, petDto.getName());
 
 	         row = psmt.executeUpdate();
 
@@ -67,5 +69,6 @@ public class PetDAO {
 
 	      return row;
 	   }
+	
 	
 }

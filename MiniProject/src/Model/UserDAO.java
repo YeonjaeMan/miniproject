@@ -135,7 +135,7 @@ public class UserDAO {
 
 			if (rs.next()) {
 				petDto = new PetDTO(rs.getString("p_name"), rs.getString("spec"), rs.getInt("hp"),
-						rs.getInt("fullness"), rs.getInt("love"), rs.getInt("money"), rs.getBoolean("supply_st"), rs.getBoolean("supply_rd"));
+						rs.getInt("fullness"), rs.getInt("love"), rs.getInt("money"),rs.getInt("snack"), rs.getInt("feed"), rs.getBoolean("supply_st"), rs.getBoolean("supply_rd"));
 			}
 
 		} catch (Exception e) {

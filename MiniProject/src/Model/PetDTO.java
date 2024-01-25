@@ -8,17 +8,24 @@ public class PetDTO {
 	private int fullness; // 펫 포만감
 	private int love; // 펫 애정도
 	private int money;
+	private int snack;
+	private int feed;
 	private boolean supply1;
 	private boolean supply2;
 	
-	public PetDTO(String name, String spec, int hp, int fullness, int love, int money, boolean supply1,
-			boolean supply2) {
+	
+
+	public PetDTO(String name, String spec, int hp, int fullness, int love, int money, int snack, int feed,
+			boolean supply1, boolean supply2) {
+		super();
 		this.name = name;
 		this.spec = spec;
 		this.hp = hp;
 		this.fullness = fullness;
 		this.love = love;
 		this.money = money;
+		this.snack = snack;
+		this.feed = feed;
 		this.supply1 = supply1;
 		this.supply2 = supply2;
 	}
@@ -85,6 +92,22 @@ public class PetDTO {
 
 	public void setSupply2(boolean supply2) {
 		this.supply2 = supply2;
+	}
+
+	public int getSnack() {
+		return snack;
+	}
+
+	public void setSnack(int snack) {
+		this.snack = snack;
+	}
+
+	public int getFeed() {
+		return feed;
+	}
+
+	public void setFeed(int feed) {
+		this.feed = feed;
 	}
 
 	
