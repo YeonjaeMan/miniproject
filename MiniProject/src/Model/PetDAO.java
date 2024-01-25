@@ -39,7 +39,7 @@ public class PetDAO {
 		}
 	}
 	
-	public int sleep(PetDTO petDto) {
+	public int update(PetDTO petDto) {
 	      int row = 0;
 	      
 	      try {
