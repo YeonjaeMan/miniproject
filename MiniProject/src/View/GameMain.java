@@ -541,7 +541,7 @@ public class GameMain {
 										}
 									} else if (hosChoice == 3) {
 										ConsoleClear();
-										if (money < 4000) {
+										if (money < 5000) {
 											System.out.println("돈이 부족합니다.");
 										} else {
 											System.out.println("******************** 진료받기 ********************");
@@ -571,7 +571,7 @@ public class GameMain {
 												System.out.println("*              0.이전으로                        *");
 												System.out.println("*              1.옷사기(10000원 애정+5)           *");
 												System.out.println("*              2.목줄사기(25000원 애정+5)         *");
-												System.out.println("*              3.인형사기(4000원)                *");
+												System.out.println("*              3.인형사기(20000원)                *");
 												System.out.println("*              4.상태확인                        *");
 												System.out.println("*              5.가방확인                        *");
 												System.out.println("************************************************");
@@ -654,7 +654,7 @@ public class GameMain {
 												System.out.println("*              0.이전으로                        *");
 												System.out.println("*              1.옷사기(10000원 애정+5)           *");
 												System.out.println("*              2.캣휠사기(25000원 애정+5)         *");
-												System.out.println("*              3.레이저사기(4000원)               *");
+												System.out.println("*              3.레이저사기(20000원)               *");
 												System.out.println("*              4.상태확인                        *");
 												System.out.println("*              5.가방확인                         *");
 												System.out.println("************************************************");
@@ -1233,7 +1233,7 @@ public class GameMain {
 
 	public static void ConsoleClear() {
 		// 화면을 지우기 위해 여러 줄을 출력
-		for (int i = 0; i < 50; ++i)
+		for (int i = 0; i < 80; ++i)
 			System.out.println();
 
 	}
@@ -1263,6 +1263,17 @@ public class GameMain {
 				System.out.println("*                  삑삑이 有                    *");
 			} else {
 				System.out.println("*                  삑삑이 無                    *");
+			}
+		} else if (spec.equals("고양이")) {
+			if (supply1 == true) {
+				System.out.println("*                  캣휠 有                     *");
+			} else {
+				System.out.println("*                  캣휠 無                     *");
+			}
+			if (supply2 == true) {
+				System.out.println("*                  레이저 有                    *");
+			} else {
+				System.out.println("*                  레이저 無                    *");
 			}
 		}
 		System.out.println("************************************************");
