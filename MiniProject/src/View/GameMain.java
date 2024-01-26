@@ -983,7 +983,34 @@ public class GameMain {
 
 						if (hp <= 0 || fullness <= 0 || love <= 0) {
 							ConsoleClear();
-							System.out.println("게임 오버");
+							System.out.println("                 ~!!*~                  \r\n"
+									+ "                 $, =$~:!               \r\n"
+									+ "                :#**: :#-*              \r\n"
+									+ "              !@:      * :~             \r\n"
+									+ "             =,*-      ,=$= ;;          \r\n"
+									+ "             * =        -*!@;@.         \r\n"
+									+ "          :. $*-       .!@@@@@@         \r\n"
+									+ "         ,@#$#:        @!@$*@;@@=;.     \r\n"
+									+ "         #@@@@@#;      #@@#!@@@@@@@;    \r\n"
+									+ "        :@#@*$@!@      :@!@@!:,,;$@@*   \r\n"
+									+ "      ;@@@!@*#@@#      -@@#.      :@@;  \r\n"
+									+ "    ,#@@@*!=@@!#!      ~@#         :@@, \r\n"
+									+ "   .@@#:     :@@=      :*-          =@; \r\n"
+									+ "   =@#.       ~@@     .@!           :@# \r\n"
+									+ "  -@@,         ,:*    -@!            @@ \r\n"
+									+ "  ;@=           *@.   -@!            @@ \r\n"
+									+ "  #@:           :@~   ,@*           ,@@ \r\n"
+									+ "  @@,           ,@:    @#           *@* \r\n"
+									+ "  #@~           ~@:    ;@:         ,@@~ \r\n"
+									+ "  *@*           *@-    .@@-       .#@=  \r\n"
+									+ "  ~@@           ##      ,@@;     !@@#,  \r\n"
+									+ "   #@$         *@~       ,#@@*;;,~=$,   \r\n"
+									+ "   ,@@=.      !@*          :=@@@;!;     \r\n"
+									+ "    ~@@@$..-;#@=.                       \r\n"
+									+ "     ,$#,~@@@@:                         \r\n"
+									+ "       ~; ;;-                           \r\n"
+									+ "                                        ");
+							System.out.println("****************** Game Over *********************");
 							mp3.play(musiclist.get(18).getPath());
 							// 게임 오버 시 해당 id의 동물 정보를 'delete'하기
 							PetDTO lastPetDto = new PetDTO(name, spec, hp, fullness, love, money, snack, feed, supply1,
@@ -1223,9 +1250,9 @@ public class GameMain {
 	public static void bagCheck(int money, int snack, int feed, String spec, boolean supply1, boolean supply2) {
 		ConsoleClear();
 		System.out.println("********************* 가방 *********************");
-		System.out.println("*                  건강 : " + money + "              *");
-		System.out.println("*                  포만감 : " + snack + "                  *");
-		System.out.println("*                  애정 : " + feed + "                    *");
+		System.out.println("*                  돈 : " + money + "              *");
+		System.out.println("*                  간식 : " + snack + "                  *");
+		System.out.println("*                  사료 : " + feed + "                    *");
 		if (spec.equals("강아지")) {
 			if (supply1 == true) {
 				System.out.println("*                  목줄 有                     *");
